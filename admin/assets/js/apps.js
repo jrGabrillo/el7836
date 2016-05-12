@@ -1521,6 +1521,7 @@ var grant_accessAll = function(){
 
 var ini_candidates_list = function(election){
     if(election != 0){
+        console.log(election);
         var data = JSON.parse(election);
         var positions = Array("President","Vice President","Secretary","Treasurer","Auditor","PIO","Peace Officer","Grade 7 Representative","Grade 8 Representative","Grade 9 Representative","Grade 10 Representative","Grade 11 Representative","Grade 12 Representative");
         $("#election-title").html(data[0][1]);
@@ -2112,6 +2113,7 @@ var ini_votecandidates = function(){
                                 });
                             }
                             else{
+                                $("#confirmVotes").addClass("hidden");
                                 ModalConfirmations("<h3>System:</h3>","<h4>Congratulation! You vote has been counted.</h4>");
                                 $(".modal-message").click(function(){
                                     window.location = "../";
@@ -2223,14 +2225,6 @@ var ini_election_list = function(){
                 });
 
                 elStat = JSON.parse(electionDetails[3]);
-                console.log(elStat);
-                /*
-
-                var listVoter = do_ajax("../admin/assets/harmony/Process.php?list_voters","");
-                listVoter = JSON.parse(listVoter.responseText);
-
-                var listVotes = do_ajax("../admin/assets/harmony/Process.php?list_votes","");
-                */
 
                 resultFinal = "<table class='table'>"+
                                 "<tr>"+
@@ -2250,13 +2244,15 @@ var ini_election_list = function(){
                             sortResults(info,2,false);
                             if(info.length>0){
                                 if(i == b){
-                                    // for(x=0; x < positionsCount[a];x++) {
-                                    for(x=0; x < info.length;x++) {
+                                    for(x=0; x < positionsCount[a];x++) {
+                                    // for(x=0; x < info.length;x++) {
                                         if(info.length>=positionsCount[a]){
-                                            result2 += "<tr><td>"+info[x][3]+"<br/><small>"+info[x][0]+"</small></td><td>"+i+"</td><td>"+info[x][2]+"</td></tr>";
+                                            if(info[x][2]>0){
+                                                result2 += "<tr><td>"+info[x][3]+"<br/><small>"+info[x][0]+"</small></td><td>"+i+"</td><td>"+info[x][2]+"</td></tr>";
+                                            }
                                         }
                                         else{
-                                            result2 += "<tr><td>"+info[x][3]+"<br/><small>"+info[x][0]+"</small></td><td>"+i+"</td><td>"+info[x][2]+"</td></tr>";
+                                            result2 += "<tr><td>"+info[x][3]+"<br/><small>"+info[x][0]+"</small></td><td>"+i+"</td><td>"+info[x][2]+"*</td></tr>";
                                         }
                                     }
                                 }
@@ -2264,12 +2260,15 @@ var ini_election_list = function(){
                         });
                     });
 
-                    var certElectionResult = "<div class='col-md-12 printArea' style='margin-top:200px;'>"+
+                    var certElectionResult = "<div class='col-md-8 printArea' >"+
+                                            "   <table class='' style='margin:50px; width:85%;'><tr><td>"+
                                             "   <h3 class='text-center'>CERTIFICATE OF ELECTION RESULTS</h3><br/>"+
                                             "   <p>I hereby certify that during the municipal election held on "+days[date.getDay()]+", "+months[date.getMonth()]+" "+date.getDate()+", "+date.getFullYear()+", for the offices listed below, the certified candidates received the votes that follow their respective names:</p><br/>"+
                                             "   <table class='table table-bordered'>"+result2+"</table>"+
+                                            "   <div class='text-center'><i>-- Nothing follows --</i></div><br/><br/>"+
                                             "   <div class='col-md-offset-1 col-md-11'>Dated this "+datenow.getDate()+nth(datenow.getDate())+" day of "+months[datenow.getMonth()]+", "+datenow.getFullYear()+"</div>"+
                                             "   <div class='pull-right' style='padding-left:50px;padding-right:50px; border-top:1px solid #000;'>Designate</div>"+
+                                            "   </td></tr></table>"+
                                             "</div>";
 
                     list += "<div class='panel-group' id='accordion'>"+

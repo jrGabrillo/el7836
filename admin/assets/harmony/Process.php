@@ -236,7 +236,10 @@ $Functions = new DatabaseClasses;
 		$data = $_POST['data'];
 		$date = $Functions->PDO_DateAndTime();
 
-		$Query = $Functions->PDO_SQLQuery("INSERT INTO tbl_election(election_id,election_title,election_date,status) VALUES('$el_id','{$data[0]}','{$data[1]}',1)");
+		$query1 = $Functions->PDO_SQL("SELECT * FROM tbl_voter");
+		$a = json_encode([count($query1),0]);
+
+		$Query = $Functions->PDO_SQLQuery("INSERT INTO tbl_election(election_id,election_title,election_date,election_details,status) VALUES('$el_id','{$data[0]}','{$data[1]}','{$a}',1)");
 		if($Query->execute())
 			echo 1;
 		else{
