@@ -1,0 +1,58 @@
+<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+<link href="assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+<!-- ================== END PAGE LEVEL STYLE ================== -->
+
+<!-- begin #content -->
+<div id="content" class="content">
+    <!-- begin page-header -->
+    <h1 class="page-header">Election Calendar</h1>
+    <!-- end page-header -->
+    <!-- begin panel -->
+    <div class="panel panel-inverse">
+        <div class="panel-body p-0">
+            <div class="vertical-box">
+                <div class="vertical-box-column p-15 bg-silver width-sm">
+                    <div id="external-events" class="calendar-event">
+                        <h4 class=" m-b-20">Election Events<br/><i><small>*Election events must be in chronological order.</small></i></h4>
+                        <div class='hidden'><a data-cmd='cancel-election' class='btn btn-sm btn-danger btn-block'>Cancel Election</a></div>
+                        <div id="calendar_message"></div>
+                        <div id='calendar_events'>
+                            <div class="external-event bg-purple" data-bg="bg-purple" data-title="1. New Election" data-media="<i class='fa fa-plus-square-o fa-lg fa-fw'></i>" data-desc="Start new poll. this will initiate the election">
+                                <h5><i class="fa fa-plus-square-o fa-lg fa-fw"></i> 1. New Election</h5>
+                                <p>Start new poll. This will initiate the election</p>
+                            </div>
+                            <div class="external-event bg-blue" data-bg="bg-blue" data-title="2. Candidates Nomination" data-media="<i class='fa fa-sitemap fa-lg fa-fw'></i>" data-desc="Nominate eligible candidates in all positions"> 
+                                <h5><i class="fa fa-sitemap fa-lg fa-fw"></i> 2. Candidates Nomination</h5>
+                                <p>Nominate eligible candidates</p>
+                            </div>
+                            <div class="external-event bg-green" data-bg="bg-green" data-title="3. Validate Voters" data-media="<i class='fa fa-check-square-o fa-lg fa-fw'></i>" data-desc="Validate active voters">
+                                <h5><i class="fa fa-check-square-o fa-lg fa-fw"></i> 3. Validate Voters</h5>
+                                <p>Validate active voters</p>
+                            </div>
+                            <div class="external-event bg-orange" data-bg="bg-orange" data-title="4. Grant Access" data-media="<i class='fa fa-tasks fa-lg fa-fw'></i>" data-desc="Validated voters will gain access to elections">
+                                 <h5><i class="fa fa-tasks fa-lg fa-fw"></i> 4. Grant Access</h5>
+                                <p>Validated voters will gain access to vote</p>
+                            </div>
+                            <div class="external-event bg-red" data-bg="bg-red" data-title="5. Election Day" data-media="<i class='fa fa-laptop fa-lg fa-fw'></i>" data-desc="Validated voters can vote to the candidates">
+                                <h5><i class="fa fa-laptop fa-lg fa-fw"></i> 5. Election Day</h5>
+                                <p>Validated voters can vote candidates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="calendar" class="vertical-box-column p-15 calendar"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end panel -->
+</div>
+<!-- end #content -->
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script>
+    App.restartGlobalFunction();
+    $.getScript('assets/plugins/fullcalendar/fullcalendar/fullcalendar.js').done(function() {
+        handleCalendar();
+    });
+
+</script>
+<!-- ================== END PAGE LEVEL JS ================== -->

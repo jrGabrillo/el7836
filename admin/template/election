@@ -1,0 +1,60 @@
+<div id="content" class="content">
+    <!-- begin page-header -->
+    <h1 class="page-header">Elecion</h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success hidden" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger hidden" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">New Election</h4>
+                </div>
+                <div class="panel-body">
+                    <div class='col-lg-6'>
+                        <div class='form-group'>
+                            <label>Election Title <span id='message_surveyTitle'></span></label>
+                            <input class='form-control' placeholder='Election Title' id='field_surveyTitle'>
+                        </div>
+                    </div>
+                    <div class='col-lg-6'>
+                        <div class='form-group'>
+                            <label>Election Date <span id='message_surveyDate'></span></label>
+                            <input class='form-control' id='field_surveyDate' placeholder='Election Date'>
+                        </div>
+                    </div>
+                    <div class='col-lg-12 hidden'>
+                        <div class='form-group'>
+                            <label>Discription <span id='message_surveyDiscription'></span></label>
+                            <textarea class='form-control' rows='3' id='field_surveyDiscription'></textarea>
+                            <small><i class='pull-right' id='char_surveyDiscription'>250 characters remaining</i></small>
+                        </div>
+                    </div>
+                    <div class='col-lg-12'>
+                        <a  href="javascript:;" class='btn btn-sm btn-success disabled' id='button_new_election'>Add</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script>
+    App.restartGlobalFunction();
+    $.ajax({
+        url: "../admin/assets/harmony/Process.php?get-active-election",
+        type: 'POST',
+        cache:false,
+        success: function(data){
+            custom_survey(data);
+        }
+    });
+</script>
+<!-- ================== END PAGE LEVEL JS ================== -->

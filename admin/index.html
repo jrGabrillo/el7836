@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title id="page-title">Powered by Apparato</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
+	<link media="screen" href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link media="screen" href="assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<link media="screen" href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link media="screen" href="assets/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet" />
+	<link media="screen" href="assets/css/animate.min.css" rel="stylesheet" />
+	<link media="screen" href="assets/css/style.css" rel="stylesheet" />
+	<link media="screen" href="assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link media="screen" href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+
+	<link media="print" href="assets/css/style.css" rel="stylesheet" />
+	<link media="print" href="assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<link media="print" href="assets/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet" />
+	<link media="print" href="assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link media="print" href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link media="screen" href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+	<link media="screen" href="assets/plugins/DataTables/extensions/AutoFill/css/autoFill.bootstrap.min.css" rel="stylesheet" />
+	<link media="screen" href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+	<link media="screen" href="assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
+
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="assets/plugins/pace/pace.min.js"></script>
+	<link media="screen" href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />	
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<!-- begin #header -->
+		<div id="header" class="header navbar navbar-default navbar-fixed-top">
+			<!-- begin container-fluid -->
+			<div class="container-fluid">
+				<!-- begin mobile sidebar expand / collapse button -->
+				<div class="navbar-header">
+					<a href="" class="navbar-brand brand">
+						<span class="navbar-logo"></span> 
+						<span class="company">Powered by Apparato</span>
+					</a>
+					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<!-- end mobile sidebar expand / collapse button -->
+				
+				<!-- begin header navigation right -->
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown navbar-user">
+						<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="assets/img/logo.gif" class='user-picture' alt="" /> 
+							<span class='hidden-xs username'>Apparato Team</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu animated fadeInLeft">
+							<li class="arrow"></li>
+							<li><a href="#" id='logout'>Log Out</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!-- end header navigation right -->
+			</div>
+			<!-- end container-fluid -->
+		</div>
+		<!-- end #header -->
+		
+		<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+			<!-- begin sidebar scrollbar -->
+			<div data-scrollbar="true" data-height="100%">
+				<!-- begin sidebar user -->
+				<ul class="nav">
+					<li class="nav-profile">
+						<div class="image">
+							<a href="javascript:;"><img src="assets/img/logo.gif" class='user-picture' alt="" /></a>
+						</div>
+						<div class="info">
+							<span class='username'>Apparato Team</span>
+							<small class='user-role'>Design and Creatives</small>
+						</div>
+					</li>
+				</ul>
+				<!-- end sidebar user -->
+				<!-- begin sidebar nav -->
+				<ul class="nav">
+					<li><a href="../admin" data-toggle="ajax"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+					<li><a href="#content=calendar" data-toggle="ajax"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
+					<li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-file"></i> 
+						    <span>Election</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="#content=election">Create New Election</a></li>
+							<li><a href="#content=list_election">Elections</a></li>
+							<li class='hidden'><a href="#content=voter_access">Voters Access</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-edit"></i> 
+						    <span>Voters</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="#content=list_voter">List</a></li>
+							<li><a href="#content=voter">Add</a></li>
+						</ul>
+					</li>
+					<li class="has-sub">
+						<a href="javascript:;">
+						    <b class="caret pull-right"></b>
+						    <i class="fa fa-group"></i> 
+						    <span>Candidate</span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="#content=list_candidate">List</a></li>
+							<li><a href="#content=candidate">Add</a></li>
+						</ul>
+					</li>					
+			        <!-- begin sidebar minify button -->
+					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+			        <!-- end sidebar minify button -->
+				</ul>
+				<!-- end sidebar nav -->
+			</div>
+			<!-- end sidebar scrollbar -->
+		</div>
+		<div class="sidebar-bg"></div>
+		<!-- end #sidebar -->
+		
+		<!-- begin #ajax-content -->
+		<div id="ajax-content"></div>
+		<!-- end #ajax-content -->
+		
+        <!-- begin theme-panel -->
+        <div class="theme-panel hidden">
+            <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-cog"></i></a>
+            <div class="theme-panel-content">
+                <h5 class="m-t-0">Color Theme</h5>
+                <ul class="theme-list clearfix">
+                    <li class="active"><a href="javascript:;" class="bg-green" data-theme="default" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Default">&nbsp;</a></li>
+                    <li><a href="javascript:;" class="bg-red" data-theme="red" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Red">&nbsp;</a></li>
+                    <li><a href="javascript:;" class="bg-blue" data-theme="blue" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Blue">&nbsp;</a></li>
+                    <li><a href="javascript:;" class="bg-purple" data-theme="purple" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Purple">&nbsp;</a></li>
+                    <li><a href="javascript:;" class="bg-orange" data-theme="orange" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Orange">&nbsp;</a></li>
+                    <li><a href="javascript:;" class="bg-black" data-theme="black" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Black">&nbsp;</a></li>
+                </ul>
+                <div class="divider"></div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label double-line">Header Styling</div>
+                    <div class="col-md-7">
+                        <select name="header-styling" class="form-control input-sm">
+                            <option value="1">default</option>
+                            <option value="2">inverse</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label">Header</div>
+                    <div class="col-md-7">
+                        <select name="header-fixed" class="form-control input-sm">
+                            <option value="1">fixed</option>
+                            <option value="2">default</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label double-line">Sidebar Styling</div>
+                    <div class="col-md-7">
+                        <select name="sidebar-styling" class="form-control input-sm">
+                            <option value="1">default</option>
+                            <option value="2">grid</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label">Sidebar</div>
+                    <div class="col-md-7">
+                        <select name="sidebar-fixed" class="form-control input-sm">
+                            <option value="1">fixed</option>
+                            <option value="2">default</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label double-line">Sidebar Gradient</div>
+                    <div class="col-md-7">
+                        <select name="content-gradient" class="form-control input-sm">
+                            <option value="1">disabled</option>
+                            <option value="2">enabled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label double-line">Content Styling</div>
+                    <div class="col-md-7">
+                        <select name="content-styling" class="form-control input-sm">
+                            <option value="1">default</option>
+                            <option value="2">black</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-12">
+                        <a href="#" class="btn btn-inverse btn-block btn-sm" data-click="reset-local-storage"><i class="fa fa-refresh m-r-3"></i> Reset Local Storage</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end theme-panel -->
+		
+		<!-- begin scroll to top btn -->
+		<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		<!-- end scroll to top btn -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/plugins/jasny/jasny-bootstrap.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+	<script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+	<script src="assets/plugins/jquery-hashchange/jquery.hashchange.min.js"></script>
+	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+
+    <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="assets/plugins/print/print.js"></script>
+	<script src="assets/js/upload.js"></script>
+	<script src="assets/plugins/gritter/js/jquery.gritter.js"></script>
+	<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+	<script src="assets/js/apps.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+	
+	<script>
+		$(document).ready(function() {
+			App.init();
+		});
+	</script>
+</body>
+</html>

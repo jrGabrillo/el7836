@@ -1,0 +1,165 @@
+<div id="content" class="content">
+    <!-- begin page-header -->
+    <h1 class="page-header">Voters</h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <div class="panel panel-inverse" data-sortable-id="form-validation-1">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success hidden" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger hidden" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">New Voter</h4>
+                </div>
+                <div class="panel-body panel-form">
+                    <form class="form-horizontal form-bordered" role='form' action='../harmony/ppload.php' method='post' enctype='multipart/form-data' id='upload'>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4" for="fullname">Picture *: <br/> please upload a 2x2 picture for best result</label>
+                            <div class="col-md-6 col-sm-6">
+						        <div id='uploads' class='uploads'></div>
+						        <div class='fileinput fileinput-new' data-provides='fileinput'>
+						            <div class='bar ImageLoader'>
+						                <span class='bar-fill-text' id='pt'></span>
+						            </div>
+						            <div class='fileinput-preview thumbnail FileInput col-md-12' data-trigger='fileinput' style='width: 150px; height: 150px;'>
+						                Upload a profile picture
+						            </div>
+						            <span class='btn btn-warning btn-sm btn-file col-md-5 hidden'>
+						                <span class='fileinput-new'>Select file</span>
+						                <span class='fileinput-exists'>Change</span>
+						                <input type='file' name='file' id='file'>
+						            </span>
+						        </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4" for="firstname">Family Name * :</label>
+                            <div class="col-md-6 col-sm-6">
+				                <input class='form-control' placeholder='Family Name' id="field_family_name"  name="firstname" data-parsley-required="true">
+				                <span id='message_family_name'></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4" for="givenname">Given Name * :</label>
+                            <div class="col-md-6 col-sm-6">
+				                <input class='form-control' placeholder='Given Name' id="field_given_name" name="givenname" data-parsley-required="true">
+				                <span id='message_given_name'></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4" for="middlename">Middle Name * :</label>
+                            <div class="col-md-6 col-sm-6">
+                                <input class="form-control" type="text" placeholder='Middle Name' id="field_middle_name" name="middlename" data-parsley-required="true" />
+                                <span id='message_middle_name'></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4">Date of Birth * :</label>
+                            <div class="col-md-2 col-sm-2">
+                                <script>
+                                    var option = "";
+                                    var months = ["January", "February", "March", "April", "May", "June",  "July", "August", "September", "October", "November", "December"];
+                                    for(x=0;x<months.length;x++){
+                                        option = option+"<option>"+months[x]+"</option>";
+                                    }
+                                    $("#field_dobMonth").html(option);
+                                </script>
+                                <select class="form-control" id="field_dobMonth">
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+			                	<script>
+			                		var option = "";
+			                		for(x=1;x<31;x++){
+			                			option = option+"<option>"+x+"</option>";
+			                		}
+			            			$("#field_dobDay").html(option);
+			                	</script>
+                                <select class="form-control" id="field_dobDay">
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-2">
+                                <script>
+                                    var option = "";
+                                    var year = new Date();
+                                    year = year.getFullYear();
+                                    for(x=(year-10);x>(year-50);x--){
+                                        option = option+"<option>"+x+"</option>";
+                                    }
+                                    $("#field_dobYear").html(option);
+                                </script>
+                                <select class="form-control" id="field_dobYear">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4">Gender :</label>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="field_male" value="Male" checked="">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="field_female" value="Female">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4">Student ID Number :</label>
+                            <div class="col-md-6 col-sm-6">
+			                    <input class='form-control' placeholder='Student ID Number' id="field_student_id">
+			                    <span id='message_student_id'></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4">Year and Section :</label>
+                            <div class="col-md-3 col-sm-3">
+			                    <select class="form-control" id="field_high_school">
+                                    <option>Grade 7</option>
+                                    <option>Grade 8</option>
+			                    	<option>Grade 9</option>
+			                    	<option>Grade 10</option>
+			                    	<option>Grade 11</option>
+			                    	<option>Grade 12</option>
+			                    </select>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+			                    <input class='form-control' placeholder='Section' id="field_section">
+			                    <span id='message_section'></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-4"></label>
+                            <div class="col-md-6 col-sm-6">
+                                <a  href="javascript:;" class='btn btn-sm btn-success disabled' id="button_register_voter">Save</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script>
+    /*
+        <option>Grade 4</option>
+        <option>Grade 5</option>
+        <option>Grade 6</option>
+        <option>Grade 7</option>
+    */
+    App.restartGlobalFunction();
+</script>
+<!-- ================== END PAGE LEVEL JS ================== -->

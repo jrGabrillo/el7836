@@ -1,0 +1,296 @@
+<!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
+<link media="screen" href="assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+<link media="screen" href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+
+<link media="print" href="assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+<link media="print" href="assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+
+<div id="content" class="content">
+    <!-- begin page-header -->
+    <h1 class="page-header">Dashboard</h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-body">
+                    <form action="/" method="POST">
+                        <div id="electionwizard">
+                            <ol>
+                                <li id="tab1">
+                                    Election 
+                                    <small><span class='countdown_1'></span><span class='countdown_1a'></span></small>
+                                </li>
+                                <li id="tab2">
+                                    Candidates
+                                    <small><span class='countdown_2'></span><span class='countdown_2a'></span></small>
+                                </li>
+                                <li id="tab3">
+                                    Validate Voters
+                                    <small><span class='countdown_3'></span><span class='countdown_3a'></span></small>
+                                </li>
+                                <li id="tab4">
+                                    Voter's Access
+                                    <small><span class='countdown_4'></span><span class='countdown_4a'></span></small>
+                                </li>
+                                <li id="tab5">
+                                    Election Day
+                                    <small><span class='countdown_5'></span><span class='countdown_5a'></span></small>
+                                </li>
+                            </ol>
+                            <!-- begin wizard step-1 -->
+                            <div>
+                                <fieldset>
+                                    <!-- begin row -->
+                                    <div class="row">
+                                        <div id='step1_content' class='hidden'>
+                                            <div class='col-lg-12'>
+                                                <legend class="pull-left width-full">Election</legend>
+                                            </div>       
+                                            <div class='col-lg-8' id='electionDetails' style='position:relative; margin:0 auto; float: none !important;'>
+                                                <table class="table table-striped table-bordered nowrap no-footer dtr-inline" width="100%" role="grid" aria-describedby="data-table_info" style="width: 100%;">                                            
+                                                    <tr>
+                                                        <td width='30%'>Election Title :</td>
+                                                        <td width='70%' id='_surveyTitle'></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Election Date :</td>
+                                                        <td id='_surveyDate'></td>
+                                                    </tr>
+                                                    <tr class='hidden'>
+                                                        <td>Discription :</td>
+                                                        <td id='_surveyDiscription'></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id='step1_message'>
+                                            <div class='col-md-12'>
+                                                <h3>Follow the Election Calendar</h3>
+                                                <h1><span class='countdown_1'></span></h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+                                </fieldset>
+                            </div>
+                            <!-- end wizard step-1 -->
+                            <!-- begin wizard step-2 -->
+                            <div>
+                                <fieldset>
+                                    <!-- begin row -->
+                                    <div class="row">
+                                        <div id='step2_content' class='hidden'>
+                                            <div class='col-lg-12'>
+                                                <legend class="pull-left width-full">Candidates</legend>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                            <div class='col-lg-8'>
+                                                <div id="candidate_list"></div>
+                                            </div>
+                                        </div>
+                                        <div id='step2_message' class='hidden'>
+                                            <div class='col-md-12'>
+                                                <h3>Follow the Election Calendar</h3>
+                                                <h1><span class='countdown_2'></span></h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+                                </fieldset>
+                            </div>
+                            <!-- end wizard step-2 -->
+                            <!-- begin wizard step-3 -->
+                            <div>
+                                <fieldset>
+                                    <!-- begin row -->
+                                    <div class="row">
+                                        <div id='step3_content' class='hidden'>
+                                            <div class='col-lg-12'>
+                                                <legend class="pull-left width-full">Validating Voters <a class='btn btn-danger btn-xs pull-right disabled' data-cmd='validate-all'>Validate All</a></legend>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                            <div class='col-md-8' id='list_voterAccessContent'>
+                                                <table id="list_voters_access" class="display" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th width="200px">Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id='step3_message'>
+                                            <div class='col-md-12'>
+                                                <h3>Follow the Election Calendar</h3>
+                                                <h1><span class='countdown_3'></span></h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+                                </fieldset>
+                            </div>
+                            <!-- end wizard step-3 -->
+                            <!-- begin wizard step-4 -->
+                            <div>
+                                <fieldset>
+                                    <!-- begin row -->
+                                    <div class="row">
+                                        <div id='step4_content' class='hidden'>
+                                            <div class='col-lg-12'>
+                                                <legend class="pull-left width-full">Voter's Access</legend>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-8" id="access_List">
+                                                <div class='col-lg-12' id='visible_accessList'>
+                                                    <a href="#" class='btn btn-primary hidden' id='access_grant'>Grant Access</a>
+                                                    <a href="#" class='btn btn-primary hidden' id='access_print'>Print Access Codes</a>
+                                                    <table id="accessList_show" class="table table-striped table-bordered dataTable no-footer dtr-inline" cellspacing="0" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th width="10px">#</th>
+                                                                <th>ID Number</th>
+                                                                <th width="200px">Access Code</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                                <div class='col-lg-12' id='printable_accessList' style='opacity:0;'>
+                                                    <table id="accessList_print" class="table table-striped table-bordered dataTable no-footer dtr-inline" cellspacing="0" width="100%">
+                                                        <thead>
+                                                             <tr>
+                                                                <th width="10px">#</th>
+                                                                <th>ID Number</th>
+                                                                <th width="200px">Access Code</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id='step4_message'>
+                                            <div class='col-md-12'>
+                                                <h3>Follow the Election Calendar</h3>
+                                                <h1><span class='countdown_4'></span></h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+                                </fieldset>
+                            </div>
+                            <!-- end wizard step-4 -->
+                            <!-- begin wizard step-5 -->
+                            <div> 
+                                <fieldset>
+                                    <!-- begin row -->
+                                    <div class="row">
+                                        <div id='step5_content' class='hidden'>
+                                            <div class='col-lg-12'>
+                                                <legend class="pull-left width-full">Election Day<h4><i>Do not shutdown the server on election day. <br/>Wait for the system confirmation of end of election.</i></h4></legend>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                            <div class='col-lg-8'>
+                                                <div id='electionResult'></div>
+                                            </div>
+                                        </div>
+                                        <div id='step5_message'>
+                                            <div class='col-md-12'>
+                                                <h3>Follow the Election Calendar</h3>
+                                                <h4><i>Do not shutdown the server on election day.</i></h4>
+                                                <h1><span class='countdown_5'></span></h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+                                </fieldset>
+                            </div>
+                            <!-- end wizard step-5 -->
+                        </div>
+                        <h2 id="electionStatus" class='text-center hidden'>
+                            Election events not set.<br/><small>Check all election events if properly set.</small>
+                        </h2>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-message fade" id="modal-message" style="width: 110% !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Modal Message Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Text in a modal</p>
+                <p>Do you want to turn on location services so GPS can use your location ?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Close</a>
+                <a href="javascript:;" class="btn btn-sm btn-primary">Save Changes</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script>
+$(document).ready(function() {
+    App.restartGlobalFunction();
+    grant_accessAll();
+    $("#electionwizard").bwizard();
+    $.ajax({
+        url: "../admin/assets/harmony/Process.php?get-active-election",
+        type: 'POST',
+        cache:false,
+        success: function(data){
+            custom_survey(data);
+
+            var tab2=false,tab3=false,tab4=false,tab5=false;
+
+            $("li#tab2").click(function(){
+                if(!tab2){
+                    tab2 = true;
+                    ini_candidates_list(data);                        
+                }
+            })
+
+            $("li#tab3").click(function(){
+                if(!tab3){
+                    tab3 = true;
+                    ini_voter_validation(data);
+                }
+            })
+
+            $("li#tab4").click(function(){
+                if(!tab4){
+                    tab4 = true;
+                    grant_access(data);
+
+                    var chk_accesslist = setInterval(function(){
+                        if($("#printable_accessList").html() != ''){
+                            $('#access_print').removeClass('hidden');
+                            clearInterval(chk_accesslist);
+                        }
+                    },1000);
+
+                    $('#access_print').click(function(){
+                        $('#printable_accessList').printArea();
+                    });
+                }
+            })
+
+            $("li#tab5").click(function(){
+                if(!tab5){
+                    tab5 = true;
+                    var voteUpdate = setInterval(GetVoteUpdate(data), 1000);
+                }
+            })
+        }
+    });
+});
+</script>
+<!-- ================== END PAGE LEVEL JS ================== -->

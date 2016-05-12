@@ -1,0 +1,94 @@
+<div id="content" class="content">
+    <!-- begin page-header -->
+    <h1 class="page-header">Candidate</h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+
+    <div class="row">
+        <div class="col-md-2"><span class='countdown_2'></span><span class='countdown_2a'></span></div>
+        <div class="col-md-8">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success hidden" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger hidden" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Add Candidate</h4>
+                </div>
+                <div class="panel-body">
+                    <form role='form' action='' method='post' enctype='multipart/form-data'>
+                        <div class='col-md-12'>
+                            <div class="media media-sm">
+                                <div class="media-body">
+                                    <h4 class="media-heading" id="election-title"></h4>
+                                    <p id='election-discription'></p>
+                                    <input type='hidden' id='election-id'/>
+                                </div>
+                                <br/>
+                            </div>
+
+                            <ul class="media-list media-list-with-divider hidden" id="candidate_data">
+                                <li class="media media-md">
+                                    <a class="media-left" href="javascript:;">
+                                        <img id="candidate_picture" src="" alt="" class="media-object">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading" id="candidate_name">Name</h4>
+                                        <p id="candidate_details"></p>
+                                    </div>
+                                </li>
+                                <li class="media media-sm"></li>
+                           </ul>
+                        </div>
+
+                        <div class='col-lg-4'>
+                            <div class='form-group'>
+                                <label>Student ID Number <span id='message_student_id'></span></label>
+                                <input class='form-control' placeholder='Student ID Number' id="field_candidate_student_id">
+                            </div>
+                        </div>
+                        <div class='col-md-4'>
+                            <div class='form-group'>
+                                <label>Position</label>
+                                <select class="form-control" id="field_high_school">
+                                </select>
+                            </div>
+                        </div>
+                        <div class='col-md-4'>
+                            <div class='form-group'>
+                                <label>Political Party <span id='message_candidate_party'></span></label>
+                                <input class='form-control' placeholder='' id="field_candidate_party">
+                            </div>
+                        </div>
+                        <div class='col-lg-12'>
+                            <div class='form-group'>
+                                <label>Achievement/s that support your candidacy<span id='message_candidate_achievement'></span></label>
+                                <textarea class='form-control' rows='3' id='field_candidate_achievement'></textarea>
+                                <small><i class='pull-right' id='char_candidate_achievement'>250 characters remaining</i></small>
+                            </div>
+                        </div>
+                        <div class='col-lg-12'>
+                            <div class='form-group'>
+                                <label>Purpose <span id='message_candidate_purpose'></span></label>
+                                <textarea class='form-control' rows='3' id='field_candidate_purpose'></textarea>
+                                <small><i class='pull-right' id='char_candidate_purpose'>250 characters remaining</i></small>
+                            </div>
+                        </div>
+                        <div class='col-lg-12'>
+                            <a  href="javascript:;" class='btn btn-sm btn-success disabled' id="button_register_candidate">Save</a>
+                           <small class='text-right'><i>All fields are required</i></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script>
+    App.restartGlobalFunction();
+    custom_candidate();
+</script>
+<!-- ================== END PAGE LEVEL JS ================== -->

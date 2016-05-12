@@ -1,0 +1,34 @@
+<div id="content" class="content">
+    <!-- begin page-header -->
+    <h1 class="page-header">Elections</h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="col-md-12">
+                <div class="widget widget-stats bg-blue hidden">
+                    <div class="stats-icon stats-icon-lg"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+                    <div class="stats-number">Active Election</div>
+                    <div class="stats-title">ETA 20:45:60 hrs left</div>
+                    <div class="stats-progress progress">
+                        <div class="progress-bar" style="width: 40.5%;"></div>
+                    </div>
+                    <div class="stats-desc">Election Date (40.5%)</div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div id='list_election'></div>
+            </div>
+            <div class="col-md-12">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script>
+    App.restartGlobalFunction();
+    ini_election_list();
+</script>
+<!-- ================== END PAGE LEVEL JS ================== -->

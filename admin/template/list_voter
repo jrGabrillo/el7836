@@ -1,0 +1,42 @@
+<div id="content" class="content">
+    <!-- begin page-header -->
+    <h1 class="page-header">Voters</h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success hidden" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger hidden" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">List of Voters</h4>
+                </div>
+                <div class="panel-body" id="list_voters">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-message  fade" id="modal-vote" style="width: 110% !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">System:</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script>
+    App.restartGlobalFunction();
+    ini_voter_list();
+</script>
+<!-- ================== END PAGE LEVEL JS ================== -->
