@@ -257,9 +257,9 @@ $Functions = new DatabaseClasses;
 				$QueryCandidate = $Functions->PDO_SQL("SELECT * FROM tbl_candidate WHERE election_id = '{$election_id}' AND candidate_position = '{$b}'");
 				$result = array();
 				foreach ($QueryCandidate as $key => $value) {
-					$QueryVotes = $Functions->PDO_SQL("SELECT count(*) FROM tbl_votes WHERE candidate_id = '{$value[0]}' AND election_id = '{$election_id}'");
+					// $QueryVotes = $Functions->PDO_SQL("SELECT count(*) FROM tbl_votes WHERE candidate_id = '{$value[0]}' AND election_id = '{$election_id}'");
 					$QueryDetails = $Functions->PDO_SQL("SELECT * FROM tbl_voter WHERE voter_student_id = '{$value[1]}'");
-					$result[] = [$value[1],$value[2],$QueryVotes[0][0],$QueryDetails[0][1]." ".$QueryDetails[0][3].", ".$QueryDetails[0][2]];
+					$result[] = [$value[1],$value[2],$value[7],$QueryDetails[0][1]." ".$QueryDetails[0][3].", ".$QueryDetails[0][2]];
 				}
 				$arr_election[$b] = $result;
 			}
@@ -513,7 +513,7 @@ $Functions = new DatabaseClasses;
         	$student_id = $value[7];
         	$passCode = substr($id,0,8);
 
-			$Query = $Functions->PDO_SQLQuery("INSERT INTO tbl_access(access_id,student_id,access_passcode,election_id) VALUES('{$id}','{$student_id}','{$passCode}','{$election_id}'); UPDATE tbl_voter SET date='{$date}', voter_status = 1 WHERE voter_student_id = '{$student_id}'");
+			$Query = $Functions->PDO_SQLQuery("INSERT INTO tbl_access(access_id,student_id,access_passcode,election_id) VALUES('{$id}','{$student_id}','{$passCode}','{$election_id}'); UPDATE tbl_voter SET date='{$date}', voter_status = 1, vote_status = 0 WHERE voter_student_id = '{$student_id}'");
 			if($Query->execute())
 				$flag = 0;
 			else{
@@ -526,28 +526,25 @@ $Functions = new DatabaseClasses;
 
 	if(isset($_GET['save-vote'])){
 		$data = $_POST['data'];
-		$flag = 0;
+		$flag = 0; $query = "";
 		$Query = $Functions->PDO_SQL("SELECT * FROM tbl_election WHERE status = '1'");
 		$election_id = $Query[0][0];
 		$username = $_SESSION['username'];
+		$query1 = $Functions->PDO_SQL("SELECT * FROM tbl_voter");
+		$query2 = $Functions->PDO_SQL("SELECT * FROM tbl_voter WHERE vote_status = '1'");
+		$count2 = count($query2)+1;
+		$a = json_encode([count($query1),$count2]);
+
 		foreach ($data[0] as $key => $value) {
-			$vote_id = $Functions->PDO_IDGenerator('tbl_votes','vote_id');
 			$candidateId = explode("|",$value["value"]);
-			$Query = $Functions->PDO_SQLQuery("INSERT INTO tbl_votes(vote_id,candidate_id,election_id,vote_count) VALUES('{$vote_id}','{$candidateId[0]}','{$election_id}',1)");
-			if($Query->execute()){
-				$flag = 0;
-			}
-			else{
-				$flag = 1;
-				break;
-			}
+			$candidate_voteCount = $Functions->PDO_SQL("SELECT votes FROM tbl_candidate WHERE candidate_id = '{$candidateId[0]}'");
+			$candidate_voteCount = $candidate_voteCount[0][0]+1;
+			$query .= "UPDATE tbl_candidate SET votes = {$candidate_voteCount} WHERE election_id = '{$election_id}' AND candidate_id = '{$candidateId[0]}'; ";
 		}
 
-		if($flag == 1){
-			echo "Error";
-		}
-		else{
-			$Query = $Functions->PDO_SQLQuery("DELETE FROM tbl_access WHERE student_id = '{$username}'; UPDATE tbl_voter SET voter_status = 0 WHERE voter_student_id = '{$username}'");
+		$Query = $Functions->PDO_SQLQuery($query);
+		if($Query->execute()){
+			$Query = $Functions->PDO_SQLQuery("DELETE FROM tbl_access WHERE student_id = '{$username}'; UPDATE tbl_voter SET voter_status = 0, vote_status = 1 WHERE voter_student_id = '{$username}'; UPDATE tbl_election SET election_details = '{$a}' WHERE status = 1");
 			if($Query->execute()){
 				echo 0;
 			}
@@ -556,6 +553,11 @@ $Functions = new DatabaseClasses;
 				print_r(json_encode([0,$Data]));
 			}
 		}
+		else{
+			echo "Error";
+			print_r($Query->errorInfo());
+		}
+		// break;
 	}
 
 	if(isset($_GET['count-vote'])){
@@ -565,9 +567,8 @@ $Functions = new DatabaseClasses;
 			$Query = $Functions->PDO_SQL("SELECT * FROM tbl_candidate WHERE election_id = '{$election_id}'");
 			$result = array();
 			foreach ($Query as $key => $value) {
-				$QueryVotes = $Functions->PDO_SQL("SELECT * FROM tbl_votes WHERE candidate_id = '{$value[0]}' AND election_id = '{$election_id}'");
 				$QueryDetails = $Functions->PDO_SQL("SELECT * FROM tbl_voter WHERE voter_student_id = '{$value[1]}'");
-				$result[] = [$value[1],$value[2],count($QueryVotes),$QueryDetails[0][1]." ".$QueryDetails[0][3].", ".$QueryDetails[0][2]];
+				$result[] = [$value[1],$value[2],$value[7],$QueryDetails[0][1]." ".$QueryDetails[0][3].", ".$QueryDetails[0][2]];
 			}
 			print_r(json_encode($result));
 		}
@@ -577,11 +578,14 @@ $Functions = new DatabaseClasses;
 	}
 
 	if(isset($_GET['reset-election'])){
-        $Query = $Functions->PDO_SQLQuery("UPDATE tbl_election SET status = 0 WHERE status = 1 ");
+		$query1 = $Functions->PDO_SQL("SELECT * FROM tbl_voter");
+		$query2 = $Functions->PDO_SQL("SELECT * FROM tbl_voter WHERE vote_status = '1'");
+		$a = json_encode([count($query1),count($query2)]);
+        $Query = $Functions->PDO_SQLQuery("UPDATE tbl_election SET status = 0, election_details = '{$a}' WHERE status = 1 ");
         if($Query->execute()){
         	echo 1;
         }
-        else{ 
+        else{
             $Data = $Query->errorInfo();
             echo 'There was an error with your request. SQL says: "'.$Data[2].'"';
         }

@@ -1106,7 +1106,7 @@ var handleSystemInformation = function() {
     var url = window.location.href;
     url = url.split('/');
     var base_url = url[0]+"//"+url[2]+"/"+url[3];
-    var url = base_url+"/admin/assets/settings/voting-system.settings";
+    var url = "../admin/assets/settings/voting-system.settings";
     var type = "POST";
     var data = "";
     var hash = document.location.hash;
@@ -1223,7 +1223,6 @@ var GetVoteUpdate = function(election){
                         list += "<tr><td colspan='4'>"+positions[x]+"</td></tr>";
                         $.each(data, function(i,info) {
                             if(positions[x] === info[1]){
-                                console.log(info[1]);
                                 list += "<tr><td></td><td>"+info[0]+"</td><td>"+info[3]+"</td><td>"+info[2]+"</td></tr>";
                             }
                         });
@@ -1254,8 +1253,7 @@ var ini_voter_validation = function(election){
 
                 $.each(obj['voters'],function(i,v){
                     if(v['voter_status'] != 1){
-                        console.log('dead');
-                        $('a[data-cmd="validate-all"]').removeClass('disabled');
+                        $('a[data-cmd="validate-all"]').removeClass('hidden disabled');
                     }
                 });
                 
@@ -1280,10 +1278,12 @@ var ini_voter_validation = function(election){
                             render: function ( data, type, full ) {
                                 var option = "";
                                 if((data.voter_status == 1) && (data.voter_valid != "")){
-                                    option = '<a data-id="'+data.options.id+'" class="btn btn-sm btn-white btn-block disabled">Valid since: '+data.voter_valid+'</a>';
+                                    option = '<a data-id="'+data.options.id+'" class="btn btn-sm btn-white btn-block disabled">Validated since: '+data.voter_valid+'</a>';
+                                    $('a[data-cmd="validate-all"]').addClass('hidden disabled');
                                 }
                                 else{
-                                    option = '<a data-id="'+data.options.id+'" class="btn btn-sm btn-primary btn-block btn_voterValidation">Validate</a>';
+                                    // option = '<a data-id="'+data.options.id+'" class="btn btn-sm btn-primary btn-block btn_voterValidation hidden">Validate</a>';
+                                    option = '<a class="btn btn-sm btn-white btn-block disabled">not yet validated</a>';
                                 }
                                 return option;
                             }
@@ -1487,7 +1487,7 @@ var grant_accessAll = function(){
                 type: 'POST',
                 success: function(data){
                     console.log(data);
-                    if(data == 0){
+                    if(Number(data) == 0){
                         $.gritter.add({
                             title: 'Success',
                             text: 'Access granted to all voters.',
@@ -1498,7 +1498,7 @@ var grant_accessAll = function(){
                                 }
                             }
                         });
-                        window.location.href = window.location.href;
+                        window.location.href = '../admin';
                     }
                     else{
                         $.gritter.add({
@@ -1830,6 +1830,7 @@ var updateVoter = function(){
                                 "<span class='_infoUpdate hidden'>"+
                                     "<div class='col-md-3 col-sm-3'>"+
                                     "    <select class='form-control' id='field_high_school'>"+
+                                    "       <option>Grade 7</option>"+
                                     "       <option>Grade 8</option>"+
                                     "       <option>Grade 9</option>"+
                                     "       <option>Grade 10</option>"+
@@ -1924,7 +1925,7 @@ var election_watch = function(){
         type: "POST",
         success:function(data){
             var data = JSON.parse(data);
-            console.log(data);
+            // console.log(data);
         }
     });
 }
@@ -1937,7 +1938,7 @@ var ini_votecandidates = function(){
         type: 'POST',
         success: function(data){
             var data = JSON.parse(data);
-            console.log(data);
+            // console.log(data);
             $("#election-title").html(data[0][1]);
             $("#election-discription").html(data[0][3]);
             $("#election-id").val(data[0][0 ]);
@@ -1972,7 +1973,7 @@ var ini_votecandidates = function(){
                                                 var style = " ";
                                                 var affixclass = " ";
                                                 var affix = " ";
-                                                console.log(positions[x]+" + "+data_userYearLevel);
+                                                // console.log(positions[x]+" + "+data_userYearLevel);
                                                 if(positions[x] != data_userYearLevel){
                                                     style = "style='opacity:0.5;'";
                                                     affixclass = "disabled";
@@ -2076,7 +2077,7 @@ var ini_votecandidates = function(){
                     listPreview = "";
                     $.each(votes,function(i,info) {
                         if(positions[x] === info['name']){
-                            console.log(info);
+                            // console.log(info);
                             var candidateData = info['value'].split('|');
                             listPreview += candidateData[2];
                         }
@@ -2087,14 +2088,12 @@ var ini_votecandidates = function(){
                 $(".modal-title").html("Your votes:");
                 $(".modal-body").html("<table class='table'>"+list+"</table>");
                 $("#confirmVotes").click(function(){
-                    //$("#modal-vote").modal('hide');
                     $(".modal-body").html("Processing your vote. Please wait for the vote confirmation.");
                     $("#submitVotes").html('Processing...').addClass("disabled");
                     $("a[data-dismiss='modal']").addClass("hidden disabled");
                     $("#confirmVotes").removeClass("btn-primary").addClass("btn-danger disabled").html('Processing...');
 
                     data = [votes,$('span.username').html()]
-                    // console.log(data);
                     $.ajax({
                         url: "../admin/assets/harmony/Process.php?save-vote",
                         type: 'POST', 
@@ -2202,19 +2201,19 @@ var ini_election_list = function(){
                         if(info.length>0){
                             if(i == b){
                                 result += "<tr><td colspan='4'><br/><h4>"+i+"</h4></td></tr>";
-                                // for(x=0; x < positionsCount[a];x++) {
                                 for(x=0; x < info.length;x++) {
                                     if(info.length>positionsCount[a]){
                                         // console.log("sakto");
                                         flag = flag+Number(info[x][2]);
                                         voted = voted+Number(info[x][2]);
+                                        // console.log(info[x]);
                                         result += "<tr><td></td><td>"+info[x][0]+"</td><td>"+info[x][3]+"</td><td>"+info[x][2]+"</td></tr>";
                                     }
                                     else{
                                         // console.log("kulang: winner agad");
                                         flag = flag+Number(info[x][2]);
                                         voted = voted+Number(info[x][2]);
-                                        result += "<tr><td></td><td>"+info[x][0]+"</td><td>"+info[x][3]+"</td><td>Unopposed</td></tr>";
+                                        result += "<tr><td></td><td>"+info[x][0]+"</td><td>"+info[x][3]+"</td><td>"+info[x][2]+"</td></tr>";
                                     }
                                 }
                             }
@@ -2223,17 +2222,22 @@ var ini_election_list = function(){
                     });
                 });
 
+                elStat = JSON.parse(electionDetails[3]);
+                console.log(elStat);
+                /*
+
                 var listVoter = do_ajax("../admin/assets/harmony/Process.php?list_voters","");
                 listVoter = JSON.parse(listVoter.responseText);
 
                 var listVotes = do_ajax("../admin/assets/harmony/Process.php?list_votes","");
+                */
 
                 resultFinal = "<table class='table'>"+
                                 "<tr>"+
                                     "<td colspan='4'>"+
-                                        "<strong>Percentage vote:</strong> "+((listVotes.responseText/listVoter.voters.length)*100)+"%"+
-                                        "<br/><strong>Students who already vote:</strong> "+listVotes.responseText+
-                                        "<br/><strong>All Students:</strong> "+listVoter.voters.length+
+                                        "<strong>Percentage vote:</strong> "+((elStat[1]/elStat[0])*100)+"%"+
+                                        "<br/><strong>Students who already vote:</strong> "+elStat[1]+
+                                        "<br/><strong>All Students:</strong> "+elStat[0]+
                                     "</td>"+
                                 "</tr>"+
                                 result+
@@ -2945,7 +2949,7 @@ var custom_ini = function(){
 
     //initialization
     $.ajax({
-        url: base_url+"/admin/assets/harmony/Process.php?check_access",
+        url: "../admin/assets/harmony/Process.php?check_access",
         type: type,
         success: function(data){
             console.log(data);

@@ -109,7 +109,7 @@
                                     <div class="row">
                                         <div id='step3_content' class='hidden'>
                                             <div class='col-lg-12'>
-                                                <legend class="pull-left width-full">Validating Voters <a class='btn btn-danger btn-xs pull-right disabled' data-cmd='validate-all'>Validate All</a></legend>
+                                                <legend class="pull-left width-full">Validating Voters <a class='btn btn-danger btn-xs pull-right hidden disabled' data-cmd='validate-all'>Validate All</a></legend>
                                             </div>
                                             <div class="col-md-2"></div>
                                             <div class='col-md-8' id='list_voterAccessContent'>
