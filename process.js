@@ -461,6 +461,7 @@ var account = function () {
 			var data = system.get_ajax('http://apparato.net/systems/harmony/Process.php?get-account',"");
 			data.success(function(data){
 				data = JSON.parse(data);
+				console.log(data);
 				$("#user-account img").prop('src',"../assets/img/"+data[0][4]);
 				$("#user-account a[data-activates='profile-dropdown']").html(data[0][1]);
 			});
