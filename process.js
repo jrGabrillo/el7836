@@ -203,7 +203,8 @@ var system = function () {
 		get_ajax: function(url,data){
 	        return $.ajax({
 		        type: "POST",
-		        url: "Access-Control-Allow-Origin: "+url,
+		        crossDomain: true,
+		        url: url,
 		        data: {data: data},
 		        async: !1,
 		        error: function() {
