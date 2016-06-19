@@ -93,6 +93,7 @@ var system = function () {
 	        return $.ajax({
 		        type: "POST",
 		        url: url,
+		        crossDomain: true,
 		        data: {data: data},
 		        async: !1,
 		        cache:false,
