@@ -463,8 +463,8 @@ var account = function () {
 			data.success(function(data){
 				data = JSON.parse(data);
 				console.log(data);
-				$("#user-account img").prop('src',"../assets/img/"+data[0][4]);
-				$("#user-account a[data-activates='profile-dropdown']").html(data[0][1]);
+				//$("#user-account img").prop('src',"../assets/img/"+data[0][4]);
+				//$("#user-account a[data-activates='profile-dropdown']").html(data[0][1]);
 			});
 		},  
 		accountLevel: function(){
